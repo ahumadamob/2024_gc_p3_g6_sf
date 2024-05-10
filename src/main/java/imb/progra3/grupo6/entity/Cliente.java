@@ -23,16 +23,10 @@ public class Cliente {
 	    public Cliente() {}
 	    
 	    
-	    public Cliente(String apellido, String nombre, String correoElectronico, String direccionEnvio, String numeroTelefono) {
-	        this.apellido = apellido;
-	        this.nombre = nombre;
-	        this.correoElectronico = correoElectronico;
-	        this.direccionEnvio = direccionEnvio;
-	        this.numeroTelefono = numeroTelefono;
-	    }
+	    
 	
 	    
-	    //getters y setters
+	    
 	    
 	    public Long getId() {
 	        return id;
@@ -84,20 +78,6 @@ public class Cliente {
 	    
 	    
 	    
-	    //toString
-	    
-	    @Override
-	    public String toString() {
-	        return "Cliente{" +
-	                "id=" + id +
-	                ", apellido='" + apellido + '\'' +
-	                ", nombre='" + nombre + '\'' +
-	                ", correoElectronico='" + correoElectronico + '\'' +
-	                ", direccionEnvio='" + direccionEnvio + '\'' +
-	                ", numeroTelefono='" + numeroTelefono + '\'' +
-	               
-	                '}';
-	    }
 	    
 	    
 	    
