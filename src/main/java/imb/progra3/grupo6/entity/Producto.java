@@ -8,34 +8,26 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-@Entity(name = "producto")
+@Entity
 public class Producto {
 	
 	 	@Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    @Column(name = "id_producto")
-	    private Long idProducto;
+	    private Long id;
 	 	
-	 	@Column (name= "descripcion")
 	 	private String descripcion;
 
-	 	@Column(name = "precio")
 	 	private Long precio;
 	 	
-	 	@Column(name = "stock")
 	 	private String stock;
 	 	
-	 	@Column(name = "categoria")
 	 	private String categoria;
 	 	
-	 	@Column(name = "detalles_tecnicos")
-	    private String detalles_tecnicos;
+	 	private String detalles_tecnicos;
 	 	
-	 	@Column(name = "url_imagen_producto")
 	 	private String url_imagen_producto;
 	 	
-	    @Column(name = "fecha_reposicion")
-	    private LocalDate fecha_reposicion;
+	   private LocalDate fecha_reposicion;
 	    
 	    /*
 		@Column(name = "proveedor")
@@ -48,25 +40,18 @@ public class Producto {
 	    @Column(name = "idcarrito")
 	    private Long idCarrito;*/
 
-		public Producto(Long idProducto, String descripcion, Long precio, String stock, String categoria,
-				String detalles_tecnicos, String url_imagen_producto, LocalDate fecha_reposicion) {
-			super();
-			this.idProducto = idProducto;
-			this.descripcion = descripcion;
-			this.precio = precio;
-			this.stock = stock;
-			this.categoria = categoria;
-			this.detalles_tecnicos = detalles_tecnicos;
-			this.url_imagen_producto = url_imagen_producto;
-			this.fecha_reposicion = fecha_reposicion;
+	   
+		public Producto() {
+			 
 		}
 
-		public Long getIdProducto() {
-			return idProducto;
+		public Long getId() {
+			return id;
 		}
 
-		public void setIdProducto(Long idProducto) {
-			this.idProducto = idProducto;
+
+		public void setId(Long id) {
+			this.id = id;
 		}
 
 		public String getDescripcion() {
