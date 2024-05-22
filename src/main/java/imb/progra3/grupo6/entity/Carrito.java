@@ -49,7 +49,5 @@ public class Carrito {
 		this.metodoEnvioPreferido = metodoEnvioPreferido;
 	}
     
-    
-
 
 }
