@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class DetalleCarrito {
@@ -12,11 +14,19 @@ public class DetalleCarrito {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private Long carrito_id;
-	private long producto_id;
+	@ManyToOne
+	@JoinColumn(name = "producto_id")
+	private Producto producto;
 	private Integer cantidad;
 	private double precioUnitario;
 	private double subtotal;
 	
+	
+	
+	
+	public DetalleCarrito() {
+		
+	}
 	public Long getId() {
 		return id;
 	}
@@ -29,11 +39,11 @@ public class DetalleCarrito {
 	public void setCarrito_id(Long carrito_id) {
 		this.carrito_id = carrito_id;
 	}
-	public long getProducto_id() {
-		return producto_id;
+	public Producto getProducto() {
+		return producto;
 	}
-	public void setProducto_id(long producto_id) {
-		this.producto_id = producto_id;
+	public void setProducto(Producto producto) {
+		this.producto = producto;
 	}
 	public Integer getCantidad() {
 		return cantidad;
