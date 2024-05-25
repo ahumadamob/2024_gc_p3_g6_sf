@@ -13,8 +13,7 @@ public class Carrito {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private Long cliente;
+	private Long cliente;
     private LocalDate fechaCreacion;
     private String estado;
     private String metodoEnvioPreferido;
