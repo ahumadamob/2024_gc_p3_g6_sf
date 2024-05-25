@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Cliente {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -17,15 +18,8 @@ public class Cliente {
 	 private String direccionEnvio;
 	 private String numeroTelefono;
 	 
-	 
-	    
-	    public Cliente() {}
-	    
-	    
-	    
 	
-	    
-	    
+	    public Cliente() {}
 	    
 	    public Long getId() {
 	        return id;
