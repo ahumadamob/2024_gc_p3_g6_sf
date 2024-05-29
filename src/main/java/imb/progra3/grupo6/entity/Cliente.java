@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Cliente {
@@ -18,15 +19,14 @@ public class Cliente {
 	 private String direccionEnvio;
 	 private String numeroTelefono;
 	 
-	 
+	@OneToOne(mappedBy = "cliente")
+    private Carrito carrito;
 	    
 	    public Cliente() {}
 	    
 	    
 	    
 	
-	    
-	    
 	    
 	    public Long getId() {
 	        return id;
@@ -76,6 +76,14 @@ public class Cliente {
 	        this.numeroTelefono = numeroTelefono;
 	    }
 	    
+
+		 public Carrito getCarrito() {
+        return carrito;
+    	}
+
+    	public void setCarrito(Carrito carrito) {
+        this.carrito = carrito;
+    	}
 	    
 	    
 	    
