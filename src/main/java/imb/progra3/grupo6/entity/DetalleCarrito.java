@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class DetalleCarrito {
@@ -17,6 +18,15 @@ public class DetalleCarrito {
 	private double precioUnitario;
 	private double subtotal;
 	
+
+	@ManyToOne
+	private OrdenCompra ordenCompra;
+	
+	
+	public DetalleCarrito() {
+		
+	}
+
 	public Long getId() {
 		return id;
 	}
