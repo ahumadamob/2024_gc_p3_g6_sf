@@ -21,12 +21,15 @@ public class DetalleCarrito {
 	private double precioUnitario;
 	private double subtotal;
 	
-	
+
+	@ManyToOne
+	private OrdenCompra ordenCompra;
 	
 	
 	public DetalleCarrito() {
 		
 	}
+
 	public Long getId() {
 		return id;
 	}
