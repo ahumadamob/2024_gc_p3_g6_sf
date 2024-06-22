@@ -1,6 +1,7 @@
 package imb.progra3.grupo6.entity;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
 import jakarta.persistence.CascadeType;
@@ -30,6 +31,15 @@ public class OrdenCompra {
 	private Set<DetalleCarrito> detalleCarritoId;
 	
 	
+	 @OneToMany(mappedBy = "ordenCompra")
+	    private Set<ProductoOrdenCompra> productos = new HashSet<>();
+	    
+	 public OrdenCompra() {}
+	 public OrdenCompra(String cliente, String fecha) {
+	        this.cliente = cliente;
+	        this.fecha = fecha;
+	    }
+	 
 	public Long getId() {
 		return id;
 	}
@@ -84,4 +94,20 @@ public class OrdenCompra {
 	public void setDetalleSeguimiento(String detalleSeguimiento) {
 		this.detalleSeguimiento = detalleSeguimiento;
 	}
+	
+	public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
+    public Set<ProductoOrdenCompra> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(Set<ProductoOrdenCompra> productos) {
+        this.productos = productos;
+    }
 }
