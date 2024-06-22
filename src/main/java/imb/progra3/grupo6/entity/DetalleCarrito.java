@@ -13,22 +13,18 @@ public class DetalleCarrito {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	private Long carrito_id;
+	
 	@ManyToOne
 	@JoinColumn(name = "producto_id")
 	private Producto producto;
 	private Integer cantidad;
 	private double precioUnitario;
-	private double subtotal;
-	
+	private double subtotal;	
 
 	@ManyToOne
 	private OrdenCompra ordenCompra;
-	
-	
-	public DetalleCarrito() {
-		
-	}
 
 	public Long getId() {
 		return id;

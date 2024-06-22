@@ -7,7 +7,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
 
 @Entity
 
@@ -16,12 +15,9 @@ public class Carrito {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
 	@OneToOne
     @JoinColumn(name = "cliente_id", referencedColumnName = "id")
     private Cliente cliente;
-
-
     private LocalDate fechaCreacion;
     private String estado;
     private String metodoEnvioPreferido;
@@ -33,10 +29,10 @@ public class Carrito {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Long getCliente() {
+	public Cliente getCliente() {
 		return cliente;
 	}
-	public void setCliente(Long cliente) {
+	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
 	public LocalDate getFechaCreacion() {

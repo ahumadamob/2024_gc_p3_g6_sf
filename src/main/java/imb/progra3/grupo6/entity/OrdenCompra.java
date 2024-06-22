@@ -28,18 +28,12 @@ public class OrdenCompra {
 	private String detalleSeguimiento;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private Set<DetalleCarrito> detalleCarritoId;
+	private Set<DetalleCarrito> detalleCarrito;
 	
 	
-	 @OneToMany(mappedBy = "ordenCompra")
-	    private Set<ProductoOrdenCompra> productos = new HashSet<>();
-	    
-	 public OrdenCompra() {}
-	 public OrdenCompra(String cliente, String fecha) {
-	        this.cliente = cliente;
-	        this.fecha = fecha;
-	    }
-	 
+	@OneToMany(mappedBy = "ordenCompra")
+	private Set<ProductoOrdenCompra> productos = new HashSet<>();	    
+ 
 	public Long getId() {
 		return id;
 	}
@@ -93,15 +87,7 @@ public class OrdenCompra {
 	}
 	public void setDetalleSeguimiento(String detalleSeguimiento) {
 		this.detalleSeguimiento = detalleSeguimiento;
-	}
-	
-	public String getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
+	}	
 
     public Set<ProductoOrdenCompra> getProductos() {
         return productos;
@@ -110,4 +96,14 @@ public class OrdenCompra {
     public void setProductos(Set<ProductoOrdenCompra> productos) {
         this.productos = productos;
     }
+	public Set<DetalleCarrito> getDetalleCarrito() {
+		return detalleCarrito;
+	}
+	public void setDetalleCarrito(Set<DetalleCarrito> detalleCarrito) {
+		this.detalleCarrito = detalleCarrito;
+	}
+    
+    
+    
+    
 }
