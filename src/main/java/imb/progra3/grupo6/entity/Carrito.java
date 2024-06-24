@@ -6,7 +6,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
+import imb.progra3.grupo6.entity.Cliente; 
 
 @Entity
 
@@ -18,6 +20,11 @@ public class Carrito {
 	@OneToOne
     @JoinColumn(name = "cliente_id", referencedColumnName = "id")
     private Cliente cliente;
+
+	@ManyToOne
+    @JoinColumn(name = "cliente_one_to_many_id")
+    private Cliente clienteOneToMany;
+
     private LocalDate fechaCreacion;
     private String estado;
     private String metodoEnvioPreferido;
@@ -35,6 +42,16 @@ public class Carrito {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
+
+
+	public Cliente getClienteOneToMany() {
+        return clienteOneToMany;
+    }
+
+    public void setClienteOneToMany(Cliente clienteOneToMany) {
+        this.clienteOneToMany = clienteOneToMany;
+    }
+
 	public LocalDate getFechaCreacion() {
 		return fechaCreacion;
 	}
