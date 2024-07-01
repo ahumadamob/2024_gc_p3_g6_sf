@@ -1,11 +1,14 @@
 package imb.progra3.grupo6.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
+
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
+
 
 @Entity
 public class DetalleCarrito {
@@ -13,18 +16,16 @@ public class DetalleCarrito {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	private Long carrito_id;
-	
-	@ManyToOne
-	@JoinColumn(name = "producto_id")
-	private Producto producto;
+	private long producto_id;
 	private Integer cantidad;
 	private double precioUnitario;
-	private double subtotal;	
-
-	@ManyToOne
-	private OrdenCompra ordenCompra;
+	private double subtotal;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "carrito_id", nullable = false)
+	
+	private Carrito carrito;
+	
 
 	public Long getId() {
 		return id;
@@ -32,14 +33,11 @@ public class DetalleCarrito {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Long getCarrito_id() {
-		return carrito_id;
-	}
-	public void setCarrito_id(Long carrito_id) {
-		this.carrito_id = carrito_id;
-	}
-	public Producto getProducto() {
-		return producto;
+
+	
+	public long getProducto_id() {
+		return producto_id;
+
 	}
 	public void setProducto(Producto producto) {
 		this.producto = producto;
