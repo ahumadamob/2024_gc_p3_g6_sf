@@ -12,7 +12,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
 @Entity
-
 public class Carrito {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,18 +26,29 @@ public class Carrito {
     
     
     
+
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Long getCliente() {
+	public Cliente getCliente() {
 		return cliente;
 	}
-	public void setCliente(Long cliente) {
+	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
+
+
+	public Cliente getClienteOneToMany() {
+        return clienteOneToMany;
+    }
+
+    public void setClienteOneToMany(Cliente clienteOneToMany) {
+        this.clienteOneToMany = clienteOneToMany;
+    }
+
 	public LocalDate getFechaCreacion() {
 		return fechaCreacion;
 	}
@@ -58,6 +68,7 @@ public class Carrito {
 		this.metodoEnvioPreferido = metodoEnvioPreferido;
 	}
     
+
 	public List<DetalleCarrito> getDetalles() {
         return detalles;
     }
@@ -67,4 +78,4 @@ public class Carrito {
     }
 
 
-}
+

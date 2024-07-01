@@ -1,11 +1,16 @@
 package imb.progra3.grupo6.entity;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class OrdenCompra {
@@ -21,6 +26,14 @@ public class OrdenCompra {
 	private String metodoDeEnvio;
 	private LocalDate fechaEntregaEstimada;
 	private String detalleSeguimiento;
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private Set<DetalleCarrito> detalleCarrito;
+	
+	
+	@OneToMany(mappedBy = "ordenCompra")
+	private Set<ProductoOrdenCompra> productos = new HashSet<>();	    
+ 
 	public Long getId() {
 		return id;
 	}
@@ -74,5 +87,23 @@ public class OrdenCompra {
 	}
 	public void setDetalleSeguimiento(String detalleSeguimiento) {
 		this.detalleSeguimiento = detalleSeguimiento;
+	}	
+
+    public Set<ProductoOrdenCompra> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(Set<ProductoOrdenCompra> productos) {
+        this.productos = productos;
+    }
+	public Set<DetalleCarrito> getDetalleCarrito() {
+		return detalleCarrito;
 	}
+	public void setDetalleCarrito(Set<DetalleCarrito> detalleCarrito) {
+		this.detalleCarrito = detalleCarrito;
+	}
+    
+    
+    
+    
 }

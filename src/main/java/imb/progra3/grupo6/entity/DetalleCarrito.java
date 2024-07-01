@@ -5,8 +5,10 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.JoinColumn;
+
 
 @Entity
 public class DetalleCarrito {
@@ -24,18 +26,21 @@ public class DetalleCarrito {
 	
 	private Carrito carrito;
 	
+
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	
 	public long getProducto_id() {
 		return producto_id;
+
 	}
-	public void setProducto_id(long producto_id) {
-		this.producto_id = producto_id;
+	public void setProducto(Producto producto) {
+		this.producto = producto;
 	}
 	public Integer getCantidad() {
 		return cantidad;

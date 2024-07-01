@@ -1,12 +1,14 @@
 package imb.progra3.grupo6.entity;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Producto {
@@ -15,9 +17,11 @@ public class Producto {
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	    private Long id;
 	 	
+	 	private String nombre;
+
 	 	private String descripcion;
 
-	 	private Long precio;
+	 	private Double precio;
 	 	
 	 	private String stock;
 	 	
@@ -28,6 +32,10 @@ public class Producto {
 	 	private String url_imagen_producto;
 	 	
 	   private LocalDate fecha_reposicion;
+	   
+	   @OneToMany(mappedBy = "producto")
+	    private Set<ProductoOrdenCompra> ordenesCompra = new HashSet<>();
+
 	    
 	    /*
 		@Column(name = "proveedor")
@@ -44,6 +52,11 @@ public class Producto {
 		public Producto() {
 			 
 		}
+		 
+		public Producto(String nombre, Double precio) {
+		        this.nombre = nombre;
+		        this.precio = precio;
+		    }
 
 		public Long getId() {
 			return id;
@@ -62,11 +75,11 @@ public class Producto {
 			this.descripcion = descripcion;
 		}
 
-		public Long getPrecio() {
+		public Double getPrecio() {
 			return precio;
 		}
 
-		public void setPrecio(Long precio) {
+		public void setPrecio(Double precio) {
 			this.precio = precio;
 		}
 
@@ -110,8 +123,21 @@ public class Producto {
 			this.fecha_reposicion = fecha_reposicion;
 		}
 	   
-		
+		public String getNombre() {
+		        return nombre;
+		    }
 
+		public void setNombre(String nombre) {
+		        this.nombre = nombre;
+		    }
+		
+		 public Set<ProductoOrdenCompra> getOrdenesCompra() {
+		        return ordenesCompra;
+		    }
+
+		 public void setOrdenesCompra(Set<ProductoOrdenCompra> ordenesCompra) {
+		        this.ordenesCompra = ordenesCompra;
+		    }
 
 	    
 
