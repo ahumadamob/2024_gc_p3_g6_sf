@@ -5,10 +5,12 @@ import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
 @Entity
@@ -16,7 +18,10 @@ public class Carrito {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long cliente;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
+    
     private LocalDate fechaCreacion;
     private String estado;
     private String metodoEnvioPreferido;
@@ -39,15 +44,6 @@ public class Carrito {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-
-
-	public Cliente getClienteOneToMany() {
-        return clienteOneToMany;
-    }
-
-    public void setClienteOneToMany(Cliente clienteOneToMany) {
-        this.clienteOneToMany = clienteOneToMany;
-    }
 
 	public LocalDate getFechaCreacion() {
 		return fechaCreacion;
@@ -76,6 +72,4 @@ public class Carrito {
     public void setDetalles(List<DetalleCarrito> detalles) {
         this.detalles = detalles;
     }
-
-
-
+}
