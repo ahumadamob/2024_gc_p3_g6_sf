@@ -61,6 +61,12 @@ public class DetalleCarrito {
 		this.subtotal = subtotal;
 	}
 	
-	
+	public OrdenCompra getOrdenCompra() {
+        return ordenCompra;
+    }
+    
+    public void setOrdenCompra(OrdenCompra ordenCompra) {
+        this.ordenCompra = ordenCompra;
+    }
 
 }
