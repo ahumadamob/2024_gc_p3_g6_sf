@@ -16,7 +16,10 @@ public class DetalleCarrito {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private long producto_id;
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "producto_id")
+    private Producto producto;
+	
 	private Integer cantidad;
 	private double precioUnitario;
 	private double subtotal;
@@ -26,6 +29,9 @@ public class DetalleCarrito {
 	
 	private Carrito carrito;
 	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "orden_compra_id")
+    private OrdenCompra ordenCompra; 
 
 	public Long getId() {
 		return id;
@@ -35,8 +41,8 @@ public class DetalleCarrito {
 	}
 
 	
-	public long getProducto_id() {
-		return producto_id;
+	public Producto getProducto_id() {
+		return producto;
 
 	}
 	public void setProducto(Producto producto) {
