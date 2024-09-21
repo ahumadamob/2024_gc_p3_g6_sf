@@ -9,4 +9,6 @@ public interface IClienteService {
     Cliente save(Cliente cliente);
     void delete(Long id);
     boolean exists(Long id);
+ // Método mágico para buscar clientes por prefijo de apellido
+    List<Cliente> findByApellidoPrefix(String letra);
 }
