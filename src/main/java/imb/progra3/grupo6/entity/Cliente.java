@@ -9,11 +9,9 @@ import jakarta.persistence.OneToOne;
 import java.util.List; 
 
 @Entity
-public class Cliente {
+public class Cliente extends BaseEntity {
     
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	
 	
 	private String apellido;
 	private String nombre;
@@ -28,13 +26,7 @@ public class Cliente {
     @OneToMany(mappedBy = "cliente")
     private List<Carrito> carritos;
 	    
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+   
 
     public String getApellido() {
         return apellido;

@@ -11,11 +11,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
 @Entity
-public class Producto {
+public class Producto extends BaseEntity {
 	
-	 	@Id
-	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    private Long id;
+	 	
 	 	
 	 	private String nombre;
 
@@ -58,14 +56,7 @@ public class Producto {
 		        this.precio = precio;
 		    }
 
-		public Long getId() {
-			return id;
-		}
-
-
-		public void setId(Long id) {
-			this.id = id;
-		}
+	
 
 		public String getDescripcion() {
 			return descripcion;

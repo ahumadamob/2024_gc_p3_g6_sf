@@ -11,11 +11,9 @@ import jakarta.persistence.JoinColumn;
 
 
 @Entity
-public class DetalleCarrito {
+public class DetalleCarrito extends BaseEntity{
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "producto_id")
     private Producto producto;
@@ -33,12 +31,6 @@ public class DetalleCarrito {
     @JoinColumn(name = "orden_compra_id")
     private OrdenCompra ordenCompra; 
 
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	
 	public Producto getProducto_id() {
