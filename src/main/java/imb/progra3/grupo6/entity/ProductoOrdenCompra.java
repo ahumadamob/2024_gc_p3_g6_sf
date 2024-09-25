@@ -1,5 +1,7 @@
 package imb.progra3.grupo6.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,10 +18,12 @@ public class ProductoOrdenCompra{
 
     @ManyToOne
     @JoinColumn(name = "producto_id")
+    @JsonBackReference
     private Producto producto;
 
     @ManyToOne
     @JoinColumn(name = "orden_compra_id")
+    @JsonBackReference
     private OrdenCompra ordenCompra;
 
     // Constructors, getters and setters

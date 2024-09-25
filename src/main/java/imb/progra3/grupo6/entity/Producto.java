@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,13 +29,14 @@ public class Producto {
 	 	
 	 	private String categoria;
 	 	
-	 	private String detalles_tecnicos;
+	 	private String detallesTecnicos;
 	 	
-	 	private String url_imagen_producto;
+	 	private String urlImagenProducto;
 	 	
-	   private LocalDate fecha_reposicion;
+	   private LocalDate fechaReposicion;
 	   
 	   @OneToMany(mappedBy = "producto")
+	   @JsonManagedReference
 	    private Set<ProductoOrdenCompra> ordenesCompra = new HashSet<>();
 
 	    
@@ -100,27 +103,27 @@ public class Producto {
 		}
 
 		public String getDetalles_tecnicos() {
-			return detalles_tecnicos;
+			return detallesTecnicos;
 		}
 
 		public void setDetalles_tecnicos(String detalles_tecnicos) {
-			this.detalles_tecnicos = detalles_tecnicos;
+			this.detallesTecnicos = detalles_tecnicos;
 		}
 
 		public String getUrl_imagen_producto() {
-			return url_imagen_producto;
+			return urlImagenProducto;
 		}
 
 		public void setUrl_imagen_producto(String url_imagen_producto) {
-			this.url_imagen_producto = url_imagen_producto;
+			this.urlImagenProducto = url_imagen_producto;
 		}
 
 		public LocalDate getFecha_reposicion() {
-			return fecha_reposicion;
+			return fechaReposicion;
 		}
 
 		public void setFecha_reposicion(LocalDate fecha_reposicion) {
-			this.fecha_reposicion = fecha_reposicion;
+			this.fechaReposicion = fecha_reposicion;
 		}
 	   
 		public String getNombre() {
