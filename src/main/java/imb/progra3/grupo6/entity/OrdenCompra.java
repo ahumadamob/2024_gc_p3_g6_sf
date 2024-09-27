@@ -11,29 +11,52 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 @Entity
 public class OrdenCompra {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
+	@NotNull(message = "El cliente_id no puede ser nulo")
 	private Long cliente_id;
+
+	@NotNull(message = "La fecha de orden no puede ser nula")
 	private LocalDate fechaDeOrden;
+
+	@NotBlank(message = "El estado de la orden no puede estar en blanco")
 	private String estadoDeOrden;
+
+	@Positive(message = "El total debe ser un valor positivo")
+	@DecimalMin(value = "0.0", inclusive = false, message = "El total debe ser mayor que 0")
 	private double Total;
+
+	@NotBlank(message = "El método de pago no puede estar en blanco")
 	private String metodoDePago;
+
+	@NotBlank(message = "El método de envío no puede estar en blanco")
 	private String metodoDeEnvio;
+
+	@Future(message = "La fecha de entrega estimada debe estar en el futuro")
 	private LocalDate fechaEntregaEstimada;
+
+	@NotBlank(message = "El detalle de seguimiento no puede estar en blanco")
 	private String detalleSeguimiento;
-	
+
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@NotEmpty(message = "El detalle del carrito no puede estar vacío")
 	private Set<DetalleCarrito> detalleCarrito;
-	
-	
+
 	@OneToMany(mappedBy = "ordenCompra")
-	private Set<ProductoOrdenCompra> productos = new HashSet<>();	    
- 
+	private Set<ProductoOrdenCompra> productos = new HashSet<>();
+
 	public Long getId() {
 		return id;
 	}
@@ -87,23 +110,23 @@ public class OrdenCompra {
 	}
 	public void setDetalleSeguimiento(String detalleSeguimiento) {
 		this.detalleSeguimiento = detalleSeguimiento;
-	}	
+	}
 
-    public Set<ProductoOrdenCompra> getProductos() {
-        return productos;
-    }
+	public Set<ProductoOrdenCompra> getProductos() {
+		return productos;
+	}
 
-    public void setProductos(Set<ProductoOrdenCompra> productos) {
-        this.productos = productos;
-    }
+	public void setProductos(Set<ProductoOrdenCompra> productos) {
+		this.productos = productos;
+	}
 	public Set<DetalleCarrito> getDetalleCarrito() {
 		return detalleCarrito;
 	}
 	public void setDetalleCarrito(Set<DetalleCarrito> detalleCarrito) {
 		this.detalleCarrito = detalleCarrito;
 	}
-    
-    
-    
-    
+
+
+
+
 }
