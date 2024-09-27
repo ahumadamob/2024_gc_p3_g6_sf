@@ -13,6 +13,10 @@ public class ClienteServiceImpl implements IClienteService {
 
     @Autowired
     private ClienteRepository clienteRepository;
+    
+    public ClienteServiceImpl(ClienteRepository clienteRepository) {
+        this.clienteRepository = clienteRepository;
+    }
 
     @Override
     public List<Cliente> getAll() {
@@ -37,5 +41,10 @@ public class ClienteServiceImpl implements IClienteService {
     @Override
     public boolean exists(Long id) {
         return clienteRepository.existsById(id);
+    }
+    
+    @Override
+    public List<Cliente> findByApellidoPrefix(String letra) {
+        return clienteRepository.findByApellidoStartingWith(letra);
     }
 }
