@@ -9,4 +9,6 @@ public interface IOrdenCompraService {
     OrdenCompra save(OrdenCompra ordenCompra);
     void delete(Long id);
     boolean exists(Long id);
+    
+    List<OrdenCompra> findByMetodoDePago(String metodoDePago);
 }

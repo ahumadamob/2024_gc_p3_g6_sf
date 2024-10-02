@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import imb.progra3.grupo6.entity.OrdenCompra;
+import imb.progra3.grupo6.exception.OrdenCompraNotFound;
 import imb.progra3.grupo6.service.IOrdenCompraService;
 import imb.progra3.grupo6.util.APIResponse;
 import imb.progra3.grupo6.util.ResponseUtil;
@@ -31,11 +32,17 @@ public class OrdenCompraController {
 		return ordenCompra.isEmpty()? ResponseUtil.notFound("No hay órdenes de compra para mostrar.") : ResponseUtil.success(ordenCompra);
 	}
 
+
 	@GetMapping("/ordenesCompra/{id}")
-	public ResponseEntity<APIResponse<OrdenCompra>> showOrderByID(@PathVariable Long id) {
-		
-		return ordenCompraService.exists(id)? ResponseUtil.success(ordenCompraService.getById(id)):ResponseUtil.notFound("No se encontró la orden de compra con id {0}.", id);
-	}
+	public ResponseEntity<OrdenCompra> showOrderByID(@PathVariable Long id) {
+    
+    OrdenCompra ordenCompra = ordenCompraService.getById(id);
+    	if (ordenCompra == null) {
+    	    throw new OrdenCompraNotFound(id);
+   	 	}
+    	return ResponseEntity.ok(ordenCompra);
+		}
+
 
 	@PostMapping("/ordenesCompra")
 	public ResponseEntity<APIResponse<OrdenCompra>> crearOrden(@RequestBody OrdenCompra ordenCompra){
@@ -44,16 +51,43 @@ public class OrdenCompraController {
 	}
 
 	@PutMapping("/ordenesCompra/{id}")
-	public ResponseEntity<APIResponse<OrdenCompra>> modificarOrden(@RequestBody OrdenCompra ordenCompra){
-		
-		
-		return ordenCompraService.exists(ordenCompra.getId())? ResponseUtil.success(ordenCompraService.save(ordenCompra)) : ResponseUtil.notFound("No se encontró la orden que desea modificar con id {0}",ordenCompra.getId()) ;
+	public ResponseEntity<OrdenCompra> modificarOrden(@PathVariable Long id, @RequestBody OrdenCompra ordenCompraDetails) {
+		if (!ordenCompraService.exists(id)) {
+			throw new OrdenCompraNotFound(id);
+		}
+    
+    
+    	ordenCompraDetails.setId(id);
+    
+    
+    	OrdenCompra updatedOrdenCompra = ordenCompraService.save(ordenCompraDetails);
+    
+    	return ResponseEntity.ok(updatedOrdenCompra);
 	}
 	
 	@DeleteMapping("/ordenesCompra/{id}")
-	public ResponseEntity<APIResponse<OrdenCompra>> deleteOrden(@PathVariable Long id) {
+	public ResponseEntity<Void> deleteOrden(@PathVariable Long id) {
 		
-		return ordenCompraService.exists(id) ? ResponseUtil.successDeleted("La orden de compra con id {0} ha sido borrado.", id) : ResponseUtil.badRequest("No pudo ser borrada la orden con id {0}", id) ;
+		if (!ordenCompraService.exists(id)) {
+			throw new OrdenCompraNotFound(id);
+		}
+		
+		
+		ordenCompraService.delete(id);
+		
+		return ResponseEntity.noContent().build();
+	}
+
+
+	@GetMapping("/buscarMetodoDePago")
+	public ResponseEntity<List<OrdenCompra>> searchOrdenesByMetodoDePago(@RequestParam String metodoDePago) {
+		List<OrdenCompra> ordenesCompra = ordenCompraService.findByMetodoDePago(metodoDePago);
+		
+		if (ordenesCompra.isEmpty()) {
+			throw new OrdenCompraNotFound("No se encontraron órdenes de compra con el método de pago: " + metodoDePago);
+		}
+		
+		return ResponseEntity.ok(ordenesCompra);
 	}
 
 
