@@ -19,11 +19,9 @@ import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 
 @Entity
-public class Producto {
+public class Producto extends BaseEntity {
 	
-	 	@Id
-	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    private Long id;
+	 	
 	 	
 	    @NotEmpty(message = "El nombre no puede estar vacío.")
 	    @Size(min = 2, max = 100, message = "El nombre debe tener entre 2 y 100 caracteres.")
@@ -81,14 +79,7 @@ public class Producto {
 		        this.precio = precio;
 		    }
 
-		public Long getId() {
-			return id;
-		}
-
-
-		public void setId(Long id) {
-			this.id = id;
-		}
+	
 
 		public String getDescripcion() {
 			return descripcion;

@@ -10,11 +10,9 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-public class ProductoOrdenCompra{
+public class ProductoOrdenCompra extends BaseEntity{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  
 
     @ManyToOne
     @JoinColumn(name = "producto_id")
@@ -35,13 +33,7 @@ public class ProductoOrdenCompra{
     }
 
     // Getters and Setters
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+ 
 
     public Producto getProducto() {
         return producto;

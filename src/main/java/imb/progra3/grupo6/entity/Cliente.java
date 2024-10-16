@@ -15,7 +15,7 @@ import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Cliente {
-
+    
 	
 	 @Id
 	 @GeneratedValue(strategy = GenerationType.IDENTITY)

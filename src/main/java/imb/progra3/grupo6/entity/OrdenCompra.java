@@ -13,11 +13,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
 @Entity
-public class OrdenCompra {
+public class OrdenCompra extends BaseEntity{
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	
 	private Long cliente_id;
 	private LocalDate fechaDeOrden;
 	private String estadoDeOrden;
@@ -34,12 +32,7 @@ public class OrdenCompra {
 	@OneToMany(mappedBy = "ordenCompra")
 	private Set<ProductoOrdenCompra> productos = new HashSet<>();	    
  
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
+	
 	public Long getCliente_id() {
 		return cliente_id;
 	}
