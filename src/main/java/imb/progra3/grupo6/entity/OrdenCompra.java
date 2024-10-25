@@ -11,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class OrdenCompra {
@@ -18,6 +19,8 @@ public class OrdenCompra {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
+	@NotNull(message = "El cliente_id no puede ser nulo")
 	private Long cliente_id;
 	private LocalDate fechaDeOrden;
 	private String estadoDeOrden;
