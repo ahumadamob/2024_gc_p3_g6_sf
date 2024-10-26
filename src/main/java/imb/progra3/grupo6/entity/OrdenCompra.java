@@ -11,11 +11,13 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class OrdenCompra extends BaseEntity{
 	
 	
+	@NotNull(message = "El cliente_id no puede ser nulo")
 	private Long cliente_id;
 	private LocalDate fechaDeOrden;
 	private String estadoDeOrden;
@@ -32,7 +34,12 @@ public class OrdenCompra extends BaseEntity{
 	@OneToMany(mappedBy = "ordenCompra")
 	private Set<ProductoOrdenCompra> productos = new HashSet<>();	    
  
-	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public Long getCliente_id() {
 		return cliente_id;
 	}

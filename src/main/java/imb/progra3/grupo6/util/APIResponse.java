@@ -14,6 +14,9 @@ public class APIResponse <T> {
         this.data = data;
     }
 
+    public APIResponse(boolean b, String message) {
+    }
+
     public int getStatus() {
         return status;
     }

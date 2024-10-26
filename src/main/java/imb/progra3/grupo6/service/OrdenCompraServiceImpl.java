@@ -44,4 +44,9 @@ public class OrdenCompraServiceImpl implements IOrdenCompraService {
 		return id == null ? false : ordenCompraRepository.existsById(id) ;
 	}
 
+	@Override
+    public List<OrdenCompra> findByMetodoDePago(String metodoDePago) {
+        return ordenCompraRepository.findByMetodoDePago(metodoDePago);
+    }
+
 }
