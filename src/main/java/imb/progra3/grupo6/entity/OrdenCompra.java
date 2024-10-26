@@ -14,12 +14,9 @@ import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
-public class OrdenCompra {
+public class OrdenCompra extends BaseEntity{
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-
+	
 	@NotNull(message = "El cliente_id no puede ser nulo")
 	private Long cliente_id;
 	private LocalDate fechaDeOrden;
