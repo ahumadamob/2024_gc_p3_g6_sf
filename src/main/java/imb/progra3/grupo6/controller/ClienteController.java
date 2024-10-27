@@ -38,19 +38,21 @@ public class ClienteController {
         }
         return ResponseEntity.ok(cliente);
     }
-/*
-    @PostMapping
-    public Cliente createCliente(@RequestBody Cliente cliente) {
-        return clienteService.save(cliente);
-    }
-*/
+
     @PostMapping
     public ResponseEntity<Cliente> createCliente(@Valid @RequestBody Cliente cliente) {
         Cliente nuevoCliente = clienteService.save(cliente);
         return new ResponseEntity<>(nuevoCliente, HttpStatus.CREATED);
     }
 
-    
+    @PostMapping("/{id}/activar")
+    public ResponseEntity<String> activarCliente(@PathVariable Long id) {
+        boolean activado = clienteService.activarCliente(id);
+        if (!activado) {
+            throw new ClienteNotFoundException(id); 
+        }
+        return ResponseEntity.ok("Cliente activado con éxito");
+    }
     
     @PutMapping("/{id}")
     public ResponseEntity<Cliente> updateCliente(@PathVariable Long id, @RequestBody Cliente clienteDetails) {

@@ -47,6 +47,8 @@ public class Cliente {
 
     @OneToMany(mappedBy = "cliente")
     private List<Carrito> carritos;
+    
+    private Boolean activo = false;
 	    
     public Long getId() {
         return id;
@@ -114,6 +116,14 @@ public class Cliente {
     }    
 	    
 	    
+    
+    public Boolean getActivo() {
+        return activo;
+    }
+
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
+    }
 	    
 	    
 	    
