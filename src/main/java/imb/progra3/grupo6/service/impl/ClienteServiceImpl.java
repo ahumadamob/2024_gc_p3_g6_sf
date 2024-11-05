@@ -47,4 +47,15 @@ public class ClienteServiceImpl implements IClienteService {
     public List<Cliente> findByApellidoPrefix(String letra) {
         return clienteRepository.findByApellidoStartingWith(letra);
     }
+    
+    @Override
+    public boolean activarCliente(Long id) {
+        return clienteRepository.findById(id).map(cliente -> {
+            cliente.setActivo(true);
+            clienteRepository.save(cliente);
+            return true;
+        }).orElse(false);
+    }
+
+    
 }

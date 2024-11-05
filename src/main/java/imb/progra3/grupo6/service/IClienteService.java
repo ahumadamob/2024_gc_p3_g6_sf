@@ -11,4 +11,7 @@ public interface IClienteService {
     boolean exists(Long id);
  // Método mágico para buscar clientes por prefijo de apellido
     List<Cliente> findByApellidoPrefix(String letra);
+    
+    boolean activarCliente(Long id);
+
 }
