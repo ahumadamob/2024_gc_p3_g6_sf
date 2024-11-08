@@ -9,6 +9,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.JoinColumn;
 
+import java.util.Optional;
+
 
 @Entity
 public class DetalleCarrito extends BaseEntity{
@@ -67,4 +69,12 @@ public class DetalleCarrito extends BaseEntity{
         this.ordenCompra = ordenCompra;
     }
 
-}
+	public boolean eliminarProducto(Long productoId) {
+
+		if (producto != null && producto.getId().equals(productoId)) {
+			this.producto = null;
+			return true;
+		}
+		return false;
+	}
+    }
