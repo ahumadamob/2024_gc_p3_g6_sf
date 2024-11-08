@@ -62,8 +62,19 @@ public class ProductoServiceImpl implements IProductoService {
 		return productoRepository.findByOrdenesCompra_OrdenCompra_EstadoDeOrden(estado);
 	}
 	
+    @Override
+    public void marcarComoDescontinuado(Long id, String motivo) {
+        Producto producto = productoRepository.findById(id).orElse(null);
+        if (producto != null) {
+            producto.setDescontinuado(true);
+            producto.setStock(0);
+            producto.setMotivoDescontinuacion(motivo);
+            productoRepository.save(producto);
+        }
+	
 	/*public String buscarStock(String nombreProducto) {
 		return productoRepository.findStockByNombre(nombreProducto);
 	}*/
 
+}
 }

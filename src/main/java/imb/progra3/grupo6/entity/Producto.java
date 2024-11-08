@@ -16,6 +16,7 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -34,10 +35,10 @@ public class Producto extends BaseEntity {
 	    @Positive(message = "El precio debe ser un valor positivo.")
 	 	private Double precio;
 	 	
-	    @NotNull(message = "El stock no puede ser nulo.")
-	    @Positive(message = "El stock debe ser un valor positivo.")
-	    @Pattern(regexp = "\\d+", message = "El stock debe ser un número entero.")
-	 	private String stock;
+	   // @NotNull(message = "El stock no puede ser nulo.")
+	    @PositiveOrZero(message = "El stock debe ser un valor positivo.")
+	   // @Pattern(regexp = "\\d+", message = "El stock debe ser un número entero.")
+	 	private int stock;
 	 	
 	    @NotEmpty(message = "La categoría no puede estar vacía.")
 	    @Size(min = 3, max = 50, message = "La categoría debe tener entre 3 y 50 caracteres.")
@@ -56,6 +57,28 @@ public class Producto extends BaseEntity {
 	   @OneToMany(mappedBy = "producto")
 	   @JsonManagedReference
 	    private Set<ProductoOrdenCompra> ordenesCompra = new HashSet<>();
+	   
+	  
+	   private boolean descontinuado;
+	   
+	   private String motivoDescontinuacion;
+
+	    
+	    public boolean isDescontinuado() {
+	        return descontinuado;
+	    }
+
+	    public void setDescontinuado(boolean descontinuado) {
+	        this.descontinuado = descontinuado;
+	    }
+
+	    public String getMotivoDescontinuacion() {
+	        return motivoDescontinuacion;
+	    }
+
+	    public void setMotivoDescontinuacion(String motivoDescontinuacion) {
+	        this.motivoDescontinuacion = motivoDescontinuacion;
+	    }
 
 	    
 	    /*
@@ -97,11 +120,11 @@ public class Producto extends BaseEntity {
 			this.precio = precio;
 		}
 
-		public String getStock() {
+		public int getStock() {
 			return stock;
 		}
 
-		public void setStock(String stock) {
+		public void setStock(int stock) {
 			this.stock = stock;
 		}
 

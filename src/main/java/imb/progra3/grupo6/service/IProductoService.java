@@ -10,5 +10,6 @@ public interface IProductoService {
     Producto save(Producto producto);
     void delete(Long id);
     boolean exists(Long id);
+	void marcarComoDescontinuado(Long id, String motivo);
     
 }
