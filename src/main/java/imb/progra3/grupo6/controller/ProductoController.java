@@ -29,12 +29,14 @@ import imb.progra3.grupo6.repository.ProductoRepository;
 @RequestMapping("/productos")
 public class ProductoController {
     
+	@Autowired
     private final IProductoService productoService;
-    private final ProductoRepository productoRepository;
+    
+  //  private final ProductoRepository productoRepository;
     
     public ProductoController(IProductoService productoService, ProductoRepository productoRepository) {
         this.productoService = productoService;
-        this.productoRepository = productoRepository;
+     //   this.productoRepository = productoRepository;
     }
     
     @GetMapping
@@ -81,7 +83,9 @@ public class ProductoController {
     
     @GetMapping("/categoria/{categoria}")
     public ResponseEntity<APIResponse<List<Producto>>> showByCategoria(@PathVariable String categoria) {
-        List<Producto> productos = productoRepository.findByCategoriaContaining(categoria);
+    	//List<Producto> productos = productoRepository.findByCategoriaContaining(categoria);
+    	List<Producto> productos = productoService.buscarPorCategoria(categoria);
+        
         if (productos.isEmpty()) {
             throw new ProductoNotFoundException("No se encontró la categoría.");
         }
@@ -90,7 +94,9 @@ public class ProductoController {
     
     @GetMapping("/url-imagen/{urlImagenProducto}")
     public ResponseEntity<APIResponse<List<Producto>>> showByUrlImagenProducto(@PathVariable String urlImagenProducto) {
-        List<Producto> productos = productoRepository.findByUrlImagenProductoContaining(urlImagenProducto);
+        //List<Producto> productos = productoRepository.findByUrlImagenProductoContaining(urlImagenProducto);
+        List<Producto> productos = productoService.buscarPorFotoProducto(urlImagenProducto);
+        
         if (productos.isEmpty()) {
             throw new ProductoNotFoundException("No se encontró imagen del producto.");
         }
@@ -99,7 +105,9 @@ public class ProductoController {
     
     @GetMapping("/fecha-reposicion")
     public ResponseEntity<APIResponse<List<Producto>>> showByFechaReposicionBetween(@RequestParam LocalDate fechaInicial, @RequestParam LocalDate fechaFinal) {
-        List<Producto> productos = productoRepository.findByFechaReposicionBetween(fechaInicial, fechaFinal);
+      //  List<Producto> productos = productoRepository.findByFechaReposicionBetween(fechaInicial, fechaFinal);
+        List<Producto> productos = productoService.buscarPorFechaReposicionEntre(fechaInicial, fechaFinal);
+        
         if (productos.isEmpty()) {
             throw new ProductoNotFoundException("entre las fechas " + fechaInicial + " y " + fechaFinal);
         }
@@ -108,7 +116,9 @@ public class ProductoController {
     
     @GetMapping("/estado-orden/{estado}")
     public ResponseEntity<APIResponse<List<Producto>>> showByEstadoOrden(@PathVariable String estado) {
-        List<Producto> productos = productoRepository.findByOrdenesCompra_OrdenCompra_EstadoDeOrden(estado);
+       // List<Producto> productos = productoRepository.findByOrdenesCompra_OrdenCompra_EstadoDeOrden(estado);
+        List<Producto> productos = productoService.buscarPorEstadoDeOrden(estado);
+        
         if (productos.isEmpty()) {
             throw new ProductoNotFoundException("No se encontraron productos con ese estado de orden.");
         }
