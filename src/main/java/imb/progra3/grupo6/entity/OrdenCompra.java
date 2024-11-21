@@ -34,12 +34,7 @@ public class OrdenCompra extends BaseEntity{
 	@OneToMany(mappedBy = "ordenCompra")
 	private Set<ProductoOrdenCompra> productos = new HashSet<>();	    
  
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
+	
 	public Long getCliente_id() {
 		return cliente_id;
 	}
